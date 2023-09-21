@@ -1,0 +1,34 @@
+<div class="breadcrumb" *ngIf="bee">
+<button mat-button routerLink="/dashboard"> Dashboard ></button>
+<button mat-button routerLink="/table"> Databases ></button>
+<button mat-button routerLink="/bees"> Bees ></button>
+<button mat-button> Bee: {{bee.latin_name}} | {{bee.trivial_name}} | id: {{bee.id}}</button>
+</div>
+<div class="open-search-form">
+  <button mat-stroked-button
+         (click)="openSearchForm()"><mat-icon>search</mat-icon>Search</button>
+</div>
+<div class="container" id="bee" *ngIf="bee">
+  <mat-card>
+    <mat-card-header>Species ID: {{bee.id}}</mat-card-header>
+    <mat-card-header>Priority: {{bee.priority}}</mat-card-header>
+    <mat-card-title>Latin name: {{bee.latin_name}}</mat-card-title>
+    <mat-card-title>Trivial name: {{bee.trivial_name}}</mat-card-title>
+    <mat-card-subtitle>Family: {{bee.family}}</mat-card-subtitle>
+    <mat-card-content>
+      <p>species: {{bee.species}}</p>
+      <p>genus: {{bee.genus}}</p>
+      <p>habitat: {{bee.habitat}}</p>
+      <p>flying time: {{bee.flying_time}}</p>
+      <p>specialisation: {{bee.specialisation}}</p>
+      <p>pollen sources: {{bee.pollen_sources}}</p>
+      <p>author: {{bee.author}}</p>
+    </mat-card-content>
+    <mat-card-actions align="end">
+      <button mat-stroked-button>Related findings</button>
+      <button mat-raised-button disabled>Gallery</button>
+      <button mat-raised-button disabled>Add photo</button>
+
+    </mat-card-actions>
+  </mat-card>
+</div>

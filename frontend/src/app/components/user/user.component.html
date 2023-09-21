@@ -1,0 +1,11 @@
+<div class="user-container">
+  <mat-card>
+      <mat-card-title>User profile ID: {{userId}}</mat-card-title>
+      <mat-card-subtitle>e-mail: {{email}}</mat-card-subtitle>
+      <mat-card-header>First name: {{firstName}}</mat-card-header>
+      <mat-card-header>Last name: {{lastName}}</mat-card-header>
+      <mat-card-actions align="end">
+      <button mat-stroked-button color="warn" (click)="doLogout(userId)">Logout</button>
+      </mat-card-actions>
+  </mat-card>
+</div>

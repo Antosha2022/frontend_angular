@@ -1,0 +1,22 @@
+.login-container{
+  //display: table-cell;
+  text-align: center;
+  border: solid #e7db9b 1px;
+  border-radius: 5px;
+  width: 250px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 20px;
+  //margin: auto;
+}
+
+.login-container button {
+  margin-right: 5px;
+  margin-left: 5px;
+  width: 90px;
+  margin-bottom: 15px;
+}
+
+.spinner{
+  margin-left: 70px;
+}

@@ -1,0 +1,17 @@
+<form>
+  <mat-form-field appearance="outline" id="species-filter-latin">
+    <mat-label>Latin or trivial name</mat-label>
+    <input type="text"
+           placeholder="Filter by Latin or trivial name"
+           aria-label="Latin or trivial name"
+           matInput
+           [formControl]="myControl"
+           [matAutocomplete]="auto"
+           (click)="dropListShow()">
+    <mat-autocomplete #auto="matAutocomplete">
+      <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
+        {{option}}
+      </mat-option>
+    </mat-autocomplete>
+  </mat-form-field>
+</form>

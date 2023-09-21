@@ -1,0 +1,24 @@
+<div class="breadcrumb">
+<button mat-button routerLink="/dashboard"> Dashboard ></button>
+<button mat-button routerLink="/collections"> Collections ></button>
+<button *ngIf="field_visit" mat-button routerLink="/collection-detail/{{field_visit.collection_id}}"> Collection #{{field_visit.collection_id}} ></button>
+<button *ngIf="field_visit" mat-button> Field visit #{{field_visit.id}} ></button>
+</div>
+
+<div class="container" *ngIf="field_visit">
+  <h3>Field visit: {{field_visit.name}} at {{field_visit.location}}</h3>
+
+  <p>Date: <span>{{field_visit.date}}</span></p>
+  <p>Description: <span>{{field_visit.description}}</span></p>
+  <div class="container row mb-3">
+    <div class="print-tags">
+<!--      <button mat-button-->
+<!--              [disabled]="printDisable"-->
+<!--                (click)="printBssTags()"><mat-icon>print</mat-icon>Print tags</button>-->
+    </div>
+<app-findings-list></app-findings-list>
+    <div class="spinner">
+      <mat-progress-spinner></mat-progress-spinner>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,55 @@
+<div class="collection-form">
+  <h3 mat-dialog-title>{{ data.id ? 'Update field visit' : 'Add new field visit'}}</h3>
+  <div mat-dialog-content>
+
+    <div class="card-body mt-3">
+      <form [formGroup]="visitForm" (ngSubmit)="addNewVisit()">
+        <mat-form-field appearance="outline" id="visit-name">
+          <mat-label>Name your field visit</mat-label>
+          <input matInput
+                 placeholder="Name your visit"
+                 [formControl]="visitForm.controls.name"
+                 autocomplete="name"
+          >
+        </mat-form-field>
+        <mat-form-field appearance="outline" id="visit-location">
+          <mat-label>City or place</mat-label>
+          <input matInput
+                 placeholder="Location"
+                 [formControl]="visitForm.controls.location"
+                 autocomplete="location"
+          >
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" id="datepicker">
+          <mat-label>Choose a date</mat-label>
+          <input matInput
+                 [formControl]="visitForm.controls.date"
+                 [matDatepicker]="picker"
+          >
+          <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" id="visit-description">
+          <mat-label>Description</mat-label>
+          <textarea matInput
+                    placeholder="Description"
+                    [formControl]="visitForm.controls.description"
+                    autocomplete="description"
+          ></textarea>
+        </mat-form-field>
+
+        <div mat-dialog-actions align="end">
+          <button mat-button mat-dialog-close>Cancel</button>
+          <button mat-button
+                  type="submit"
+                  [disabled]="visitForm.valid ? null : true "
+          >{{ data.id ? 'Update field visit' : 'Add field visit'}}</button>
+        </div>
+
+      </form>
+    </div>
+  </div>
+</div>
+

@@ -1,0 +1,13 @@
+<div class="breadcrumb">
+<button mat-button routerLink="/dashboard"> Dashboard ></button>
+<button mat-button routerLink="/collections"> Collections ></button>
+<button *ngIf="collection" mat-button> Collection #{{collection.id}} ></button>
+</div>
+<div class="container" *ngIf="collection">
+  <h4>Collection: {{collection.name}} at {{collection.location}}</h4>
+  <p>Description: {{collection.description}}</p>
+  <app-visits></app-visits>
+  <div class="spinner">
+    <mat-progress-spinner></mat-progress-spinner>
+  </div>
+</div>

@@ -1,0 +1,11 @@
+mat-toolbar {
+  height: 60px;
+  display: flex;
+  align-items: center;
+  background-color: #e7db9b;
+  color: #9d7828;
+}
+
+mat-toolbar .spacer {
+  width: 80%;
+}

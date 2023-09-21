@@ -1,0 +1,21 @@
+.container.row.row{
+  margin-top: 10px;
+  justify-content: flex-start;
+}
+.container.row.mb-3{
+  margin-top: 30px;
+  justify-content: flex-end;
+}
+
+.mat-mdc-raised-button {
+  width: 15px;
+  --mdc-protected-button-container-color: #e7db9b;
+  --mdc-protected-button-label-text-color: #9d7828;
+}
+
+#ask-review,
+#ask-supervision,
+#print-tags {
+  width: auto;
+  margin-left: 10px;
+}

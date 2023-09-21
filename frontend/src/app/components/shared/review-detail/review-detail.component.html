@@ -1,0 +1,16 @@
+<div class="breadcrumb">
+<button mat-button routerLink="/dashboard"> Dashboard ></button>
+<button mat-button routerLink="/review"> Reviews ></button>
+<button mat-button *ngIf="review" routerLink="/review-detail/{{review.id}}"> Review №{{review.id}} ></button>
+</div>
+
+<div class="container" *ngIf="review">
+  <h3>Review ID: {{review.id}}</h3>
+  <p>Requester: {{review.requester_id}}</p>
+  <p>Reviewer: {{review.reviewer_id}}</p>
+
+  <div class="container mb-3">
+    <app-review-finding-list></app-review-finding-list>
+  </div>
+
+</div>

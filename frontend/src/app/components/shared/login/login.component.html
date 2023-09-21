@@ -1,0 +1,38 @@
+<div class="login-container">
+  <h3 class="card-header">Login</h3>
+  <div class="card-body">
+    <form [formGroup]="loginForm">
+      <mat-form-field appearance="outline">
+        <mat-label>E-Mail</mat-label>
+        <input matInput
+               placeholder="E-Mail"
+               [formControl]="loginForm.controls.username"
+               autocomplete="username"
+        />
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Passwort</mat-label>
+        <input matInput
+               type="password"
+               placeholder="Passwort"
+               [formControl]="loginForm.controls.password"
+               autocomplete="current-password"
+        />
+      </mat-form-field>
+
+      <br>
+
+      <button mat-raised-button
+              [disabled]="loginForm.valid ? null : true"
+              (click)="doLogin()">
+        Login
+      </button>
+
+      <button mat-raised-button routerLink="../register">Register</button>
+    </form>
+    <div *ngIf="spinnerShow" class="spinner">
+    <mat-spinner></mat-spinner>
+    </div>
+  </div>
+</div>

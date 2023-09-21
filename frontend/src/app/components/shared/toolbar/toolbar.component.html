@@ -1,0 +1,7 @@
+<mat-toolbar>
+  <img src="./assets/images/bee.png" width="50"/>
+  <b>{{ title.toUpperCase() }}</b>
+
+  <div class="spacer"></div>
+  <app-menu *ngIf="userSessionService.getUser()"></app-menu>
+</mat-toolbar>

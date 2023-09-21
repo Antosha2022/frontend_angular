@@ -1,0 +1,24 @@
+.species-table{
+  table-layout: fixed;
+  width: 100%;
+  border-collapse: collapse;
+}
+.species-table-cell{
+  border: 1px solid #e7db9b;
+  text-align: left;
+  padding: 5px;
+}
+.mat-icon {
+  color: #e7db9b;
+}
+.search-bar input {
+  margin-bottom: 10px;
+  width: 30%;
+}
+.breadcrumb{
+  opacity: 50%;
+}
+
+#find-species{
+  margin: 10px;
+}

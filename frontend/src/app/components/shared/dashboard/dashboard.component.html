@@ -1,0 +1,87 @@
+<div class="container card">
+  <h4>Your last collection</h4>
+  <p>Your most recent collections: open to see the connected field visits</p>
+  <div class="dashboard-container">
+    <div class="dashboard-card" *ngFor="let collection of dataSourceCollection">
+      <mat-card *ngIf="collection.collectionIsVisible">
+        <mat-card-header>
+          <mat-card-subtitle><span>from: {{collection.field_visits[0].date }}</span></mat-card-subtitle>
+          <mat-card-subtitle *ngIf="collection.field_visits.length > 1 ">
+            <span>till: {{collection.field_visits[collection.field_visits.length - 1].date }}</span>
+          </mat-card-subtitle>
+          <mat-card-subtitle>{{ collection.name }}</mat-card-subtitle>
+          <mat-card-title>{{ collection.location }}</mat-card-title>
+        </mat-card-header>
+        {{ collection.field_visits.length }} field visits
+        <mat-card-actions align="end">
+          <button mat-button
+                  routerLink="/collection-detail/{{collection.id}}">OPEN
+          </button>
+        </mat-card-actions>
+      </mat-card>
+    </div>
+  </div>
+</div>
+
+<div class="container card">
+  <h4>Reviews</h4>
+  <p>You accomplished the following reviews for your fellows</p>
+  <div class="dashboard-container">
+    <div class="dashboard-card" *ngFor="let review of dataSourceReview">
+      <mat-card *ngIf="currentUserID === review.requester_id && review.status !=='archived'">
+        <mat-card-header>
+          <mat-card-subtitle><span>reviewer: {{ review.reviewer.first_name}}</span></mat-card-subtitle>
+          <mat-card-subtitle><span>visit ID: {{ review.field_visit_id }}</span></mat-card-subtitle>
+          <mat-card-subtitle><span>review ID: {{ review.id }}</span></mat-card-subtitle>
+          <mat-card-subtitle><span>STATUS: </span></mat-card-subtitle>
+          <mat-card-title>{{ review.status }}</mat-card-title>
+        </mat-card-header>
+        <mat-card-subtitle>
+          <span>version: {{review.version}}</span>
+        </mat-card-subtitle>
+        <span>Field visit of {{ review.field_visit.date }}</span>
+
+        <mat-card-actions align="end">
+          <button mat-button
+                  routerLink="/review-detail/{{review.id}}">
+            OPEN
+          </button>
+        </mat-card-actions>
+      </mat-card>
+    </div>
+  </div>
+</div>
+
+<div class="container card">
+  <h4>Review requests</h4>
+  <p>The following visits are searching your attention to be reviewed</p>
+  <div class="dashboard-container">
+    <div class="dashboard-card" *ngFor="let review of dataSourceReview">
+      <mat-card *ngIf="currentUserID !== review.requester_id">
+        <mat-card-header>
+          <mat-card-subtitle><span>requested by: {{ review.requester.first_name }}</span></mat-card-subtitle>
+          <mat-card-subtitle><span>visit ID: {{ review.field_visit_id }}</span></mat-card-subtitle>
+          <mat-card-subtitle><span>review ID: {{ review.id }}</span></mat-card-subtitle>
+          <mat-card-subtitle><span>STATUS: </span></mat-card-subtitle>
+          <mat-card-title>{{ review.status }}</mat-card-title>
+        </mat-card-header>
+        <mat-card-subtitle>
+          <span>version: {{review.version}}</span>
+        </mat-card-subtitle>
+
+        <mat-card-actions align="end">
+          <button mat-button
+                  color="accent"
+                  [disabled]="review.status === 'rejected'|| review.status === 'completed'"
+                  (click)="rejectAskReview(review)">
+            REJECT
+          </button>
+          <button mat-button
+                  routerLink="/review-detail/{{review.id}}">
+            OPEN
+          </button>
+        </mat-card-actions>
+      </mat-card>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,58 @@
+<div class="container-icon">
+  <mat-icon mat-dialog-close
+            (click)="closeDialog()"
+  >close</mat-icon>
+</div>
+<div class="container">
+  <form>
+    <div class="row" id="form-size">
+      <div class="col">
+        <h5>Width, mm <input matInput
+               id="width-input"
+               type="number"
+               value="60"
+               max="277"
+               min="10"
+               autocomplete="width"
+        ></h5>
+      </div>
+        <div class="col">
+          <h5>Height, mm <input matInput
+                 type="number"
+                 id="height-input"
+                 value="30"
+                 max="277"
+                 min="10"
+                 autocomplete="height"
+          ></h5>
+          </div>
+    </div>
+  </form>
+  <div select-version id="version">
+    <h5>Version
+      <button mat-raised-button
+              (click)="selectVersion(0)">0</button>
+      <button mat-raised-button
+              [disabled]="last_version < 1"
+              (click)="selectVersion(1)">1</button>
+      <button mat-raised-button
+              [disabled]="last_version < 2"
+              (click)="selectVersion(2)">2</button>
+    </h5>
+    <sub>Latest version is {{last_version}}, selected version is {{selected_version}}</sub>
+  </div>
+    <div class="container row" id="chips" >
+      <h5>Template <mat-icon id="help"
+                             (click)="openInfoDialog()"
+                    >help</mat-icon></h5>
+      <p *ngIf="selected_version ===0">
+        <app-print-tags-version0></app-print-tags-version0>
+      </p>
+      <p *ngIf="selected_version ===1">
+        <app-print-tags-version1></app-print-tags-version1>
+      </p>
+      <p *ngIf="selected_version ===2">
+        <app-print-tags-version2></app-print-tags-version2>
+      </p>
+    </div>
+</div>

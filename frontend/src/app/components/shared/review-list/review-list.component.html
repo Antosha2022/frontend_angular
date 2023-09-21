@@ -1,0 +1,73 @@
+<div class="breadcrumb">
+<button mat-button routerLink="/dashboard"> Dashboard ></button>
+<button mat-button routerLink="/review"> Reviews ></button>
+</div>
+
+<div class="container" *ngIf="dataReview">
+  <h4 class="col">Reviews</h4>
+</div>
+<div class="container">
+
+<table mat-table [dataSource]="dataReview" class="mat-elevation-z8">
+  <ng-container matColumnDef="id">
+    <th mat-header-cell *matHeaderCellDef> Id </th>
+    <td mat-cell *matCellDef="let element"> {{element.id}} </td>
+  </ng-container>
+  <ng-container matColumnDef="requester_id">
+    <th mat-header-cell *matHeaderCellDef> requester id </th>
+    <td mat-cell *matCellDef="let element"> {{element.requester_id}} </td>
+  </ng-container>
+  <ng-container matColumnDef="reviewer_id">
+    <th mat-header-cell *matHeaderCellDef> reviewer id </th>
+    <td mat-cell *matCellDef="let element"> {{element.reviewer_id}} </td>
+  </ng-container>
+  <ng-container matColumnDef="field_visit_id">
+    <th mat-header-cell *matHeaderCellDef> field visit id </th>
+    <td mat-cell *matCellDef="let element"> {{element.field_visit_id}} </td>
+  </ng-container>
+  <ng-container matColumnDef="details">
+    <th mat-header-cell *matHeaderCellDef> details </th>
+    <td mat-cell *matCellDef="let element"> {{element.details}} </td>
+  </ng-container>
+  <ng-container matColumnDef="status">
+    <th mat-header-cell *matHeaderCellDef> status </th>
+    <td mat-cell *matCellDef="let element"> {{element.status}} </td>
+  </ng-container>
+  <ng-container matColumnDef="version">
+    <th mat-header-cell *matHeaderCellDef> version </th>
+    <td mat-cell *matCellDef="let element"> {{element.version}} </td>
+  </ng-container>
+  <ng-container matColumnDef="actions">
+    <th mat-header-cell *matHeaderCellDef></th>
+    <td mat-cell *matCellDef="let element">
+      <button mat-icon-button
+              routerLink="/review-detail/{{element.id}}"
+              ><mat-icon>launch</mat-icon></button>
+      <button mat-icon-button
+              [disabled]="currentUserId===element.requester_id ||
+                          element.status !== 'pending'"
+              (click)="rejectTargetReview(element)"
+              ><mat-icon>report</mat-icon></button>
+      <button mat-icon-button
+              [disabled]="currentUserId===element.reviewer_id"
+              (click)="openConfirmDeleteTargetReview(element)"
+              ><mat-icon>delete</mat-icon></button>
+      <button mat-icon-button
+              disabled
+              (click)="archiveReview(element)"
+              ><mat-icon>archive</mat-icon></button>
+      <button mat-icon-button
+              disabled
+              (click)="restoreReview(element)"
+              ><mat-icon>restore</mat-icon></button>
+    </td>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true" ></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+</table>
+</div>
+<div class="spinner">
+<mat-progress-spinner></mat-progress-spinner>
+</div>
+

@@ -1,0 +1,36 @@
+<div class="collection-form">
+  <h3 mat-dialog-title>Ask a review</h3>
+  <div mat-dialog-content>
+
+    <div class="card-body mt-3">
+      <form [formGroup]="askReviewForm" (ngSubmit)="onSubmitted()">
+        <mat-form-field appearance="outline" id="reviewer-email">
+          <mat-label>Email of reviewer</mat-label>
+          <input matInput
+                 placeholder="reviewer_email"
+                 [formControl]="askReviewForm.controls.reviewer_email"
+                 autocomplete="reviewer_email"
+          >
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" id="review-details">
+          <mat-label>details</mat-label>
+          <textarea matInput
+                    placeholder="details"
+                    [formControl]="askReviewForm.controls.details"
+                    autocomplete="details"
+          ></textarea>
+        </mat-form-field>
+
+        <div mat-dialog-actions align="end">
+          <button mat-button mat-dialog-close>Cancel</button>
+          <button mat-button
+                  [disabled]="askReviewForm.valid ? null: true"
+                  type="submit"
+          >Send review request</button>
+        </div>
+
+      </form>
+    </div>
+  </div>
+</div>

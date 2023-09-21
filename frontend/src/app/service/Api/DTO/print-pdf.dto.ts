@@ -1,0 +1,33 @@
+export class PrintPdfDto {
+  constructor(
+  public Altitude: number,
+  public AltitudeGPS: string,
+  public AltitudeLV03: string,
+  public Collection_id: number,
+  public Comment: string,
+  public Date: string,
+  public Details: string,
+  public Finding_ID: number,
+  public Finding_number: number,
+  public Finding_sex: string,
+  public Latin_name: string,
+  public Latitude: number,
+  public LatitudeGPS: string,
+  public LatitudeLV03: string,
+  public Location: string,
+  public Longitude: number,
+  public LongitudeGPS: string,
+  public LongitudeLV03: string,
+  public Review_id: number,
+  public Reviewer_id: number,
+  public Reviewer_last_name: string,
+  public Reviewer_name: string,
+  public Species_id: number,
+  public Trivial_name: string,
+  public Visit_description: string,
+  public Visit_id: number,
+  public Visit_name: string,
+  public version: number,
+  ) {
+  }
+}

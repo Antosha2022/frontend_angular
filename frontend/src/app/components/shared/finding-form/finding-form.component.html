@@ -1,0 +1,77 @@
+<div class="collection-form">
+  <h3 mat-dialog-title>{{ data.id ? 'Update finding' : 'Add new finding'}}</h3>
+  <div mat-dialog-content>
+
+    <div class="card-body mt-3">
+      <form [formGroup]="findingForm" (ngSubmit)="addNewFinding()">
+        <mat-form-field appearance="outline" id="number">
+          <mat-label>number</mat-label>
+          <input matInput
+                 placeholder="number"
+                 [formControl]="findingForm.controls.number"
+                 autocomplete="number"
+          >
+        </mat-form-field>
+        <mat-form-field appearance="outline" id="location_latitude">
+          <mat-label>location latitude</mat-label>
+          <input matInput
+                 placeholder="location_latitude"
+                 [formControl]="findingForm.controls.location_latitude"
+                 autocomplete="location_latitude"
+          >
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" id="location_longitude">
+          <mat-label>location longitude</mat-label>
+          <input matInput
+                 placeholder="location_longitude"
+                 [formControl]="findingForm.controls.location_longitude"
+                 autocomplete="location_longitude"
+          >
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" id="location_altitude">
+          <mat-label>location altitude</mat-label>
+          <input matInput
+                 placeholder="location_altitude"
+                 [formControl]="findingForm.controls.location_altitude"
+                 autocomplete="location_altitude"
+          >
+        </mat-form-field>
+
+        <app-species-filter
+          (selectedEvent)="speciesSelectedEvent($event)"
+          [formControl]="findingForm.controls.species_id">
+        </app-species-filter>
+
+        <mat-form-field appearance="outline" id="sex">
+          <mat-label>sex</mat-label>
+          <mat-select [formControl]="findingForm.controls.sex">
+            <mat-option value="male">male</mat-option>
+            <mat-option value="female">female</mat-option>
+            <mat-option value="other">other</mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" id="comment">
+          <mat-label>comment</mat-label>
+          <textarea matInput
+                    placeholder="comment"
+                    [formControl]="findingForm.controls.details"
+                    autocomplete="comment"
+          ></textarea>
+        </mat-form-field>
+
+        <div mat-dialog-actions align="end">
+          <button mat-button mat-dialog-close>Cancel</button>
+          <button mat-button
+                  [disabled]="findingForm.valid ? null : true"
+                  type="submit"
+          >{{ data.id ? 'Update finding' : 'Add new finding'}}</button>
+        </div>
+
+      </form>
+    </div>
+  </div>
+</div>
+

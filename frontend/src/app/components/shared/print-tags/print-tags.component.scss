@@ -1,0 +1,52 @@
+//.container .row .print-tags{
+//  width: 500px;
+//}
+
+.example-section {
+  margin: 12px 0;
+}
+
+.example-margin {
+  margin: 0 12px;
+}
+
+ul {
+  list-style-type: none;
+  margin-top: 4px;
+}
+
+#print{
+  text-align: center;
+  margin-bottom: 20px;
+  button{
+    background-color: #e7db9b;
+    width: 180px;
+  }
+}
+
+.container-icon{
+  text-align: right;
+}
+.tags-chip-list{
+  width: 90%;
+}
+.print-tags{
+  width: 600px;
+}
+#form-size{
+  margin: 40px
+}
+#version{
+  margin-left: 50px;
+  sub{
+    opacity: 50%;
+  }
+}
+#chips{
+  margin-bottom: 30px;
+  margin-top: 50px;
+  margin-left: 30px;
+}
+#help{
+  color: #e7db9b;
+}

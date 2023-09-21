@@ -1,0 +1,22 @@
+<mat-drawer-container class="sidenav-container">
+  <mat-drawer *ngIf="userSessionService.getUser()" #drawer class="left-sidenav" mode="side" opened>
+    <div class="button-container">
+      <div class="btn-group-vertical" role="group" aria-label="Vertical button group">
+        <button mat-raised-button routerLink="/dashboard">Dashboard</button>
+        <button mat-raised-button routerLink="/collections">Collections</button>
+        <button mat-raised-button routerLink="/review">Reviews</button>
+        <button mat-raised-button routerLink="/table">Databases</button>
+        <button mat-stroked-button routerLink="/species-database">Species</button>
+      </div>
+    </div>
+  </mat-drawer>
+
+  <!--    <mat-drawer-content>-->
+  <!--        <button id="hide-show-sidenav" type="button" mat-button (click)="drawer.toggle()"><mat-icon>view_headline</mat-icon></button>-->
+  <!--    </mat-drawer-content>-->
+  <div style="padding-top: 10px;">
+    <router-outlet></router-outlet>
+  </div>
+</mat-drawer-container>
+
+

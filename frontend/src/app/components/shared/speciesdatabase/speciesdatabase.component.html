@@ -1,0 +1,34 @@
+<div class="breadcrumb">
+<button mat-button routerLink="/dashboard"> Dashboard ></button>
+<button mat-button routerLink="/table"> Databases ></button>
+<button mat-button routerLink="/species-database"> Bees ></button>
+</div>
+<div class="container">
+  <h4 class="col">Species</h4>
+<!--  <button mat-raised-button id="find-species">Find one species</button>-->
+<div class="search-bar">
+  <form [formGroup]="searchForm" (ngSubmit)="onSearchSubmit()">
+    <mat-label>Search: </mat-label>
+    <input type="text" placeholder="Filter the results by Latin name or trivial name" formControlName = "searchValue"/>
+  </form>
+</div>
+</div>
+<div class="container">
+<table class="species-table">
+  <thead>
+    <tr>
+      <th *ngFor="let column of displayedColumns"
+          class="species-table-cell">
+          {{capitalize(column)}}
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let element of speciesCollection">
+      <td *ngFor="let column of displayedColumns" class="species-table-cell">
+        {{element[column]}}
+      </td>
+    </tr>
+  </tbody>
+</table>
+</div>

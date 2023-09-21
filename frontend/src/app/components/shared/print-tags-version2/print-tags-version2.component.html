@@ -1,0 +1,35 @@
+<div class="container row"*ngIf="tags" id="chips" >
+  <form>
+    <mat-form-field class="tags-chip-list">
+      <mat-label>Favorite Tags</mat-label>
+      <mat-chip-grid #chipGrid aria-label="Tags selection">
+        <mat-chip-row *ngFor="let tag of tags" (removed)="remove(tag)">
+          {{tag}}
+          <button matChipRemove [attr.aria-label]="'remove ' + tag">
+            <mat-icon>cancel</mat-icon>
+          </button>
+        </mat-chip-row>
+      </mat-chip-grid>
+      <input placeholder="New Tag..."
+             #tagInput [formControl]="tagCtrl"
+             [matChipInputFor]="chipGrid" [matAutocomplete]="auto"
+             [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+             (matChipInputTokenEnd)="add($event)"/>
+      <mat-autocomplete #auto="matAutocomplete" (optionSelected)="selected($event)">
+        <mat-option *ngFor="let tag of filteredTags | async" [value]="tag">
+          {{tag}}
+        </mat-option>
+      </mat-autocomplete>
+    </mat-form-field>
+  </form>
+</div>
+<div class="print-tags" id="print">
+  <button
+    (click)="printResponse()"
+    [disabled]="printDisable"
+    mat-raised-button><mat-icon
+  >print</mat-icon>Print</button>
+</div>
+
+
+

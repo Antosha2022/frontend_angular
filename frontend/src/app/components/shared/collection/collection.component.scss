@@ -1,0 +1,25 @@
+mat-card{
+  width: 170px;
+  margin: 10px;
+  text-align: center;
+}
+
+.container.row.row {
+  margin-top: 10px;
+  justify-content: flex-start;
+}
+
+
+.mat-mdc-raised-button {
+  margin-right: 10px;
+  width: 15px;
+  --mdc-protected-button-container-color: #e7db9b;
+  --mdc-protected-button-label-text-color: #9d7828;
+}
+.breadcrumb{
+  opacity: 50%;
+}
+.spinner{
+  margin-left: 40%;
+  margin-top: 150px;
+}

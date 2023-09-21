@@ -1,0 +1,6 @@
+
+<button mat-button [matMenuTriggerFor]="beforeMenu"><span class="material-icons person">person</span></button>
+<mat-menu #beforeMenu="matMenu" xPosition="before">
+  <button mat-menu-item routerLink="/profile"><span class="material-icons" id="settings-icon">manage_accounts</span>User Profile</button>
+  <button mat-menu-item (click)="doLogout(userId)"><span class="material-icons" id="logout-icon">logout</span>Logout</button>
+</mat-menu>

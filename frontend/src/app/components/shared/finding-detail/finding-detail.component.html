@@ -1,0 +1,288 @@
+<div class="breadcrumb">
+<button mat-button routerLink="/dashboard"> Dashboard ></button>
+<button mat-button routerLink="/collections"> Collections ></button>
+<button *ngIf="finding" mat-button routerLink="/collection-detail/{{finding.collection_id}}"> Collection №{{finding.collection_id}} ></button>
+<button *ngIf="finding" mat-button routerLink="/visit-detail/{{finding.field_visit_id}}"> Field visit №{{finding.field_visit_id}} ></button>
+<button *ngIf="finding" mat-button> Finding №{{finding.id}} > version {{finding.version}}</button>
+</div>
+
+<div class="container" *ngIf="finding">
+
+</div>
+<mat-card id="finding-detail">
+  <div class="help">
+  <mat-icon>help</mat-icon>
+  </div>
+  <div class="container" *ngIf="finding">
+<!--    <div class="height-size" [formGroup]="templateSize">-->
+
+
+
+<!--      <div class="height-label-container">-->
+<!--&lt;!&ndash;        <label id="width-name-label" class="height-name-label">Width x Height</label>&ndash;&gt;-->
+<!--&lt;!&ndash;        <label id="height-name-label" class="height-name-label">Height</label>&ndash;&gt;-->
+<!--      </div>-->
+<!--      <mat-slider-->
+<!--        class="height-margin"-->
+<!--        showTickMarks-->
+<!--        discrete-->
+<!--        [max]="297"-->
+<!--        [min]="10"-->
+<!--        [displayWith]="formatLabel"-->
+<!--      >-->
+<!--        <input matSliderStartThumb width="210" [(ngModel)]="width" [ngModelOptions]="{standalone: true}">-->
+<!--        <input matSliderEndThumb height="297" [(ngModel)]="height" [ngModelOptions]="{standalone: true}">-->
+<!--      </mat-slider> {{height}} x {{width}}-->
+<!--    </div>-->
+
+
+<!--    <div class="width-size" [formGroup]="templateSize">-->
+<!--      <div class="width-label-container">-->
+<!--        <label id="width-name-label" class="width-name-label">Width </label>-->
+<!--      </div>-->
+<!--      <mat-slider-->
+<!--        [formControl]="templateSize.controls.Width"-->
+<!--        class="width-margin"-->
+<!--        [max]="297"-->
+<!--        [min]="10"-->
+<!--        showTickMarks-->
+<!--        discrete-->
+<!--        [displayWith]="formatLabelWidth"-->
+<!--      >-->
+<!--        <input matSliderThumb [(ngModel)]="width" [ngModelOptions]="{standalone: true}">-->
+<!--      </mat-slider> {{width}}-->
+<!--    </div>-->
+    <div class="select version">
+        <button mat-icon-button
+                (click)="setTop(true)"><mat-icon>done</mat-icon></button>
+        <button mat-icon-button
+
+                (click)="setAll(true)"
+        ><mat-icon>done_all</mat-icon></button>
+        <button mat-icon-button
+                (click)="clearAll(true)"><mat-icon>done_outline</mat-icon></button>
+      <p>Select version
+       <mat-card-title>{{finding.version}}</mat-card-title>
+        <button mat-raised-button
+                (click)="selectFindingVersion(finding.id!,0)">0</button>
+        <button mat-raised-button
+                [disabled]="lastVersion < 1"
+                (click)="selectFindingVersion(finding.id!,1)">1</button>
+        <button mat-raised-button
+                [disabled]="lastVersion < 2"
+                (click)="selectFindingVersion(finding.id!,2)">2</button>
+        <button mat-raised-button
+                printSectionId="print-section" ngxPrint
+                id="print-button"
+        ><mat-icon>print</mat-icon>Print</button>
+      </p>
+    </div>
+
+    <section id="print-section" class="section" [formGroup]="bssForm">
+      <div class="row">
+        <div class="col">
+          <ul>
+            <li><mat-checkbox
+              [formControl]="bssForm.controls.Finding_number"
+              [checked]="allComplete || topComplete"
+              [ngModel]="topComplete"
+              >Finding number: {{finding.number}}</mat-checkbox></li>
+            <li><mat-checkbox
+              [formControl]="bssForm.controls.version"
+              [checked]="allComplete || topComplete || redComplete"
+              [ngModel]="topComplete || allComplete || redComplete"
+              >Version: {{finding.version}}</mat-checkbox></li>
+            <li><mat-checkbox
+              [formControl]="bssForm.controls.Latin_name"
+              [checked]="allComplete || topComplete || redComplete"
+              [ngModel]="topComplete || allComplete || redComplete"
+              color="warn"
+              >Latin name: {{latinName}}</mat-checkbox></li>
+            <li><mat-checkbox
+              [formControl]="bssForm.controls.Trivial_name"
+              [checked]="allComplete || topComplete || redComplete"
+              [ngModel]="topComplete || allComplete || redComplete"
+              color="warn"
+              >Trivial Name: {{trivialName}}</mat-checkbox></li>
+            <li><mat-checkbox
+              [formControl]="bssForm.controls.Finding_sex"
+              [checked]="allComplete || topComplete || redComplete"
+              [ngModel]="topComplete || allComplete || redComplete"
+              color="warn"
+              >Finding sex: {{finding.sex}}</mat-checkbox></li>
+            <li><mat-checkbox
+              [formControl]="bssForm.controls.Comment"
+              [checked]="allComplete || topComplete"
+              [ngModel]="topComplete || allComplete"
+              color="primary"
+              >Comment: {{finding.comment}}</mat-checkbox></li>
+            <li><mat-checkbox
+              [formControl]="bssForm.controls.Visit_name"
+              [checked]="allComplete"
+              [ngModel]="allComplete"
+              >Visit name: {{visitName}}</mat-checkbox></li>
+            <li><mat-checkbox
+              [formControl]="bssForm.controls.Date"
+              [checked]="allComplete || topComplete || redComplete"
+              [ngModel]="topComplete || allComplete || redComplete"
+              color="primary"
+              >Date: {{visitDate}}</mat-checkbox></li>
+            <li><mat-checkbox
+              [formControl]="bssForm.controls.Visit_description"
+              [checked]="allComplete"
+              [ngModel]="allComplete"
+              >Visit description: {{visitDescription}}</mat-checkbox></li>
+            <li><mat-checkbox
+              [formControl]="bssForm.controls.Details"
+              [checked]="allComplete"
+              [ngModel]="allComplete"
+              >Details: {{finding.details}}</mat-checkbox></li>
+            <li><mat-checkbox
+              [formControl]="bssForm.controls.Collection_id"
+              [checked]="allComplete"
+              [ngModel]="allComplete"
+              >Collection ID: {{finding.collection_id}}</mat-checkbox></li>
+            <li><mat-checkbox
+              [formControl]="bssForm.controls.Visit_id"
+              [checked]="allComplete"
+              [ngModel]="allComplete"
+              >Field visit ID: {{finding.field_visit_id}}</mat-checkbox></li>
+            <li><mat-checkbox
+              [formControl]="bssForm.controls.Finding_ID"
+              [checked]="allComplete || topComplete"
+              [ngModel]="topComplete || allComplete"
+              color="primary"
+              >Finding ID: {{finding.id}}</mat-checkbox></li>
+            <li><mat-checkbox
+              [formControl]="bssForm.controls.Species_id"
+              [checked]="allComplete || topComplete"
+              [ngModel]="allComplete || topComplete"
+              >Species ID: {{finding.species_id}}</mat-checkbox></li>
+            <li><mat-checkbox
+              [formControl]="bssForm.controls.Reviewer_id"
+              [checked]="allComplete || topComplete"
+              [ngModel]="allComplete || topComplete"
+              color="primary"
+              >Reviewer ID: {{reviewerId}}</mat-checkbox></li>
+            <li><mat-checkbox
+              [formControl]="bssForm.controls.Review_id"
+              [checked]="allComplete || redComplete"
+              [ngModel]="allComplete || redComplete"
+              color="primary"
+              >Review ID: {{reviewId}}</mat-checkbox></li>
+          </ul>
+        </div>
+        <div class="col">
+          <div class="reviewer-name" *ngIf="finding.version > 0">
+              <ul>
+                <li><mat-checkbox
+                  [formControl]="bssForm.controls.Reviewer_name"
+                  [checked]="allComplete || topComplete"
+                  [ngModel]="topComplete || allComplete"
+                  color="primary"
+                  name="Reviewer name"
+                  >Reviewer name: {{reviewerName}}</mat-checkbox></li>
+                <li><mat-checkbox
+                  [formControl]="bssForm.controls.Reviewer_last_name"
+                  [checked]="allComplete || topComplete"
+                  [ngModel]="topComplete || allComplete"
+                  color="primary"
+                  name="Reviewer last name"
+                  >Reviewer last name: {{reviewerLastName}}</mat-checkbox></li>
+              </ul>
+          </div>
+          <div class="coordinates">
+          </div>
+              <div>
+                  <ul>
+                    <li><mat-checkbox
+                      [formControl]="bssForm.controls.Location"
+                      [checked]="allComplete || topComplete"
+                      [ngModel]="allComplete || topComplete"
+                      name="Location"
+                      >Location: {{visitLocation}}</mat-checkbox></li>
+                    <li><mat-checkbox
+                      [formControl]="bssForm.controls.Latitude"
+                      [checked]="allComplete || topComplete"
+                      [ngModel]="topComplete || allComplete"
+                      name="Latitude"
+                      >Latitude: {{finding.location_latitude}}</mat-checkbox></li>
+                    <li><mat-checkbox
+                      [formControl]="bssForm.controls.Longitude"
+                      [checked]="allComplete || topComplete"
+                      [ngModel]="topComplete || allComplete"
+                      name="Longitude"
+                      >Longitude: {{finding.location_longitude}}</mat-checkbox></li>
+                    <li><mat-checkbox
+                      [formControl]="bssForm.controls.Altitude"
+                      [checked]="allComplete || topComplete"
+                      [ngModel]="topComplete || allComplete"
+                      name="Altitude"
+                      >Altitude: {{finding.location_altitude}}</mat-checkbox></li>
+                  </ul>
+                  </div>
+                  <div>
+                    <span *ngIf="finding">GPS <mat-slide-toggle
+                      id="concert-to-lv03"
+                      [disabled]="sliderGpsDisabled === true || sliderLvDisabled === true"
+                      (toggleChange)="convertGpsToLv()"
+                      > Swiss coordinates LV03</mat-slide-toggle></span>
+                  <div *ngIf="isGpsShown" class="row container-fluid"  id="lv03-coordinates">
+                    <ul>
+              <!--        todo: insert data from convertResponse-->
+                      <li><mat-checkbox
+                        [formControl]="bssForm.controls.LatitudeLV03"
+                        [checked]="allComplete"
+                        [ngModel]="allComplete"
+                        name="LV03 East"
+                        >LV03 East: </mat-checkbox></li>
+                      <li><mat-checkbox
+                        [formControl]="bssForm.controls.LongitudeLV03"
+                        [checked]="allComplete"
+                        [ngModel]=" allComplete"
+                        name="LV03 North"
+                        >LV03 North: </mat-checkbox></li>
+                      <li><mat-checkbox
+                        [formControl]="bssForm.controls.AltitudeLV03"
+                        [checked]="allComplete"
+                        [ngModel]="allComplete"
+                        name="LV03 Altitude"
+                        >LV03 Altitude: </mat-checkbox></li>
+                    </ul>
+                  </div>
+                    <div>
+                    <span *ngIf="finding"> Swiss coordinates LV03 <mat-slide-toggle
+                      id="convert-to-gps"
+                      [disabled]="sliderLvDisabled === true || sliderGpsDisabled === true"
+                      (toggleChange)="convertLvToGps()"
+                      > GPS</mat-slide-toggle></span>
+                      <div *ngIf="isLvShown" class="row container-fluid"  id="gps-coordinates">
+                        <ul>
+                          <!--        todo: insert data from convertResponse-->
+                          <li><mat-checkbox
+                            [formControl]="bssForm.controls.LatitudeGPS"
+                            [checked]="allComplete"
+                            [ngModel]="allComplete"
+                            name="GPS Latitude"
+                            >GPS Latitude: </mat-checkbox></li>
+                          <li><mat-checkbox
+                            [formControl]="bssForm.controls.LongitudeGPS"
+                            [checked]="allComplete"
+                            [ngModel]="allComplete"
+                            name="GPS Longitude"
+                            >GPS Longitude: </mat-checkbox></li>
+                          <li><mat-checkbox
+                            [formControl]="bssForm.controls.AltitudeGPS"
+                            [checked]="allComplete"
+                            [ngModel]="allComplete"
+                            name="GPS Altitude"
+                            >GPS Altitude: </mat-checkbox></li>
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+              </div>
+          </div>
+    </section>
+  </div>
+</mat-card>

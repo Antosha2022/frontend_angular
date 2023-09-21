@@ -1,0 +1,33 @@
+<div class="collection-form">
+  <div class="container-icon">
+    <mat-icon id="close-icon"
+              mat-dialog-close>close</mat-icon>
+  </div>
+  <h3>Delete this review?</h3>
+  <div mat-dialog-content>
+    <div class="card-body">
+      <form [formGroup]="confirmForm" (ngSubmit)="confirmDeleteReview(data.id)">
+        <mat-card-title>Review ID: {{data.id}}</mat-card-title>
+        <mat-card-header>Review status: {{data.status}}</mat-card-header>
+        <mat-card-header>Review version: {{data.version}}</mat-card-header>
+        <div class="container mt-3">
+        <mat-card-subtitle>Review name: {{data.reviewer.first_name}}</mat-card-subtitle>
+        <mat-card-subtitle>last name: {{data.reviewer.last_name}}</mat-card-subtitle>
+        <mat-card-subtitle>profile ID: {{data.reviewer_id}}</mat-card-subtitle>
+        </div>
+        <h4>Are you sure?</h4>
+        <div mat-dialog-actions align="end">
+          <button mat-raised-button
+                  [disabled] = "untouchable === true"
+                  mat-dialog-close>Cancel</button>
+          <button mat-raised-button
+                  color="warn"
+                  type="submit"
+                  [disabled] = "untouchable === true"
+          >Delete this review</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+

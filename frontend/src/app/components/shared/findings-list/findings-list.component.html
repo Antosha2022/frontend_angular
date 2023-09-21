@@ -1,0 +1,88 @@
+<div class="container row mb-3">
+  <h5 class="col">attached findings: <span>{{arrayFindingVisit}}</span> </h5>
+  <button mat-raised-button
+          [disabled]="addNewFindingButtonAvailable? false: true"
+          (click)="openDialogAddFinding()">+</button>
+</div>
+<table mat-table [dataSource]="dataSourceFindings" class="mat-elevation-z8">
+  <ng-container matColumnDef="id">
+    <mat-label>Id</mat-label>
+    <th mat-header-cell *matHeaderCellDef> # </th>
+    <td mat-cell *matCellDef="let element"> {{element.id}} </td>
+  </ng-container>
+  <ng-container matColumnDef="number">
+    <mat-label>number</mat-label>
+    <th mat-header-cell *matHeaderCellDef> number </th>
+    <td mat-cell *matCellDef="let element"> {{element.number}} </td>
+  </ng-container>
+  <ng-container matColumnDef="location_latitude">
+    <th mat-header-cell *matHeaderCellDef> latitude </th>
+    <td mat-cell *matCellDef="let element"> {{element.location_latitude}} </td>
+  </ng-container>
+  <ng-container matColumnDef="location_longitude">
+    <th mat-header-cell *matHeaderCellDef> longitude </th>
+    <td mat-cell *matCellDef="let element"> {{element.location_longitude}} </td>
+  </ng-container>
+  <ng-container matColumnDef="location_altitude">
+    <th mat-header-cell *matHeaderCellDef> altitude </th>
+    <td mat-cell *matCellDef="let element"> {{element.location_altitude}} </td>
+  </ng-container>
+  <ng-container matColumnDef="species_id">
+    <th mat-header-cell *matHeaderCellDef> species id </th>
+    <td mat-cell *matCellDef="let element"> {{element.species_id}} </td>
+  </ng-container>
+  <ng-container matColumnDef="sex">
+    <th mat-header-cell *matHeaderCellDef> sex </th>
+    <td mat-cell *matCellDef="let element"> {{element.sex}} </td>
+  </ng-container>
+  <ng-container matColumnDef="comment">
+    <th mat-header-cell *matHeaderCellDef> comment </th>
+    <td mat-cell *matCellDef="let element"> {{element.comment}} </td>
+  </ng-container>
+  <ng-container matColumnDef="status">
+    <th mat-header-cell *matHeaderCellDef> status </th>
+    <td mat-cell *matCellDef="let element"> {{element.status}} </td>
+  </ng-container>
+  <ng-container matColumnDef="version">
+    <th mat-header-cell *matHeaderCellDef> version </th>
+    <td mat-cell *matCellDef="let element"> {{element.version}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="actions">
+    <th mat-header-cell *matHeaderCellDef></th>
+    <td mat-cell *matCellDef="let element">
+      <button mat-icon-button
+              disabled
+              routerLink="/finding-detail/{{element.id}}"
+      ><mat-icon>bookmark_add</mat-icon></button>
+<!--      <button mat-icon-button-->
+<!--              routerLink="/finding-detail-print/{{element.id}}"-->
+<!--      ><mat-icon>print</mat-icon></button>-->
+      <button mat-icon-button
+              [disabled]="addNewFindingButtonAvailable? false: true"
+              (click)="openDialogEditFinding(element)"><mat-icon>edit</mat-icon></button>
+      <button mat-icon-button
+              [disabled]="addNewFindingButtonAvailable? false: true"
+              (click)="deleteSelectedFinding(element)"><mat-icon>delete</mat-icon></button>
+    </td>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true" ></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+</table>
+
+<div class="container row mb-3" *ngIf="arrayFindingVisit > 0">
+  <button mat-raised-button
+          id="print-tags"
+          (click)="printBssTags()"
+  ><mat-icon>print</mat-icon>Print tags</button>
+  <button mat-raised-button
+          id="ask-review"
+          [disabled]="askReviewButtonAvailable === false || addNewFindingButtonAvailable === false"
+          (click)="createReviewForm()"
+  >Ask for review</button>
+  <button mat-raised-button id="ask-supervision"
+          [disabled]="askSuperReviewButtonAvailable === false"
+          (click)="createSuperviewForm()"
+  >Ask for supervision</button>
+</div>

@@ -1,0 +1,96 @@
+<div class="breadcrumb">
+  <button mat-button routerLink="/dashboard"> Dashboard ></button>
+  <button mat-button routerLink="/collections"> Collections ></button>
+  <button *ngIf="finding" mat-button routerLink="/collection-detail/{{finding.collection_id}}"> Collection №{{finding.collection_id}} ></button>
+  <button *ngIf="finding" mat-button routerLink="/visit-detail/{{finding.field_visit_id}}"> Field visit №{{finding.field_visit_id}} ></button>
+  <button *ngIf="finding" mat-button> Finding №{{finding.id}} > version {{finding.version}}</button>
+</div>
+<div class="container" *ngIf="finding">
+</div>
+<mat-card id="finding-detail">
+  <div class="container" *ngIf="finding">
+        <form [formGroup]="sizeForm" (ngSubmit)="sizeSubmit()">
+          <div class="row">
+            <div class="col">
+                <mat-form-field appearance="outline" id="width">
+                  <mat-label>width</mat-label>
+                  <input matInput
+                         type="number"
+                         placeholder="width in mm"
+                         [formControl]="sizeForm.controls.width"
+                         autocomplete="width"
+                  >
+                </mat-form-field>
+            </div>
+            <div class="col">
+              <mat-form-field appearance="outline" id="height">
+                <mat-label>height</mat-label>
+                <input matInput
+                       type="number"
+                       placeholder="height in mm"
+                       [formControl]="sizeForm.controls.height"
+                       autocomplete="height"
+                >
+              </mat-form-field>
+            </div>
+            <div class="col">
+              <button mat-stroked-button
+                      color="warn"
+                      [disabled]="sizeSelected"
+                      type="submit"
+              >confirm size</button>
+            </div>
+          </div>
+        </form>
+    <section class="section" >
+      <div class="row">
+        <div class="col">
+          <p>Select version (last: {{lastVersion}}, displayed: {{finding.version}})
+            <button mat-raised-button
+                    (click)="selectFindingVersion(collectionId!, visitId!, finding.id!,0)">0</button>
+            <button mat-raised-button
+                    [disabled]="lastVersion < 1"
+                    (click)="selectFindingVersion(collectionId!, visitId!, finding.id!,1)">1</button>
+            <button mat-raised-button
+                    [disabled]="lastVersion < 2"
+                    (click)="selectFindingVersion(collectionId!, visitId!, finding.id!,2)">2</button>
+          </p>
+
+        </div>
+      </div>
+    </section>
+  </div>
+      <div class="help">
+        <mat-icon>help</mat-icon>
+      </div>
+  <div class="print" id="print-tag-section">
+      <mat-card-title>Template</mat-card-title>
+<!--    <mat-card>-->
+      <ul>
+      <menu> Version: {{this.finding!.version}}</menu>
+      <li> Number: {{this.template_number}}</li>
+      <li> Latitude: {{this.template_latitude}}</li>
+      <li> Longitude: {{this.template_longitude}}</li>
+      <li> Latin name: {{this.template_latin_name}}</li>
+      <li> Trivial name: {{this.template_trivial_name}}</li>
+      <li> Sex: {{this.template_sex}}</li>
+      <li> Finder first name: {{this.template_finder_first_name}}</li>
+      <li> Finder last name: {{this.template_finder_last_name}}</li>
+      <li> Finder first name initial: {{this.template_finder_first_name_initial}}</li>
+      <li> Finder last name initial: {{this.template_finder_last_name_initial}}</li>
+      <li> Author: {{this.template_author}}</li>
+      <li> Visit date: {{this.template_visit_date}}</li>
+      <li> Visit date year: {{this.template_visit_date_year}}</li>
+      <li> Visit name: {{this.template_visit_name}}</li>
+      <li> Visit location: {{this.template_visit_location}}</li>
+      </ul>
+<!--    </mat-card>-->
+  </div>
+  <button mat-raised-button
+          id="print-button"
+          printSectionId="print-tag-section" ngxPrint
+          id="print-button"
+          (click)="print()"
+  ><mat-icon>print</mat-icon>Print</button>
+</mat-card>
+
